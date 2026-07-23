@@ -1,8 +1,8 @@
 import {
+  Stethoscope,
   FileText,
   Mic,
   PenLine,
-  MessageSquare,
   GraduationCap,
   Eye,
   type LucideIcon,
@@ -15,6 +15,12 @@ export type Product = {
   description: string;
   status: "Available" | "Beta" | "Coming Soon";
   icon: LucideIcon;
+  /** External URL for products that live on their own domain (e.g. Report Guide). */
+  externalUrl?: string;
+  /** Real product logo, shown instead of the icon badge when present. */
+  logoImage?: string;
+  /** Real product screenshot, shown instead of the placeholder preview when present. */
+  screenshotImage?: string;
   features: { title: string; description: string }[];
   benefits: string[];
   faq: { q: string; a: string }[];
@@ -22,117 +28,122 @@ export type Product = {
 
 export const products: Product[] = [
   {
+    slug: "report-guide",
+    name: "Report Guide",
+    tagline: "Understand your medical reports in plain English.",
+    description:
+      "Upload any lab result, imaging report, or specialist note and get a clear, plain-English translation within minutes — plus the follow-up questions worth asking your doctor.",
+    status: "Available",
+    icon: Stethoscope,
+    externalUrl: "https://medicalreportguide.com/",
+    logoImage: "/products/report-guide-logo.png",
+    screenshotImage: "/products/report-guide-screenshot.png",
+    features: [
+      { title: "Plain-language translation", description: "Complex medical reports, filled with jargon, translated into plain language anyone can understand with confidence." },
+      { title: "Doctor-ready follow-up questions", description: "Every report suggests the follow-up questions worth raising with your doctor at your next visit." },
+      { title: "Chat with your report", description: "Ask your AI report assistant anything — \"What does my fasting glucose mean?\" — and get an answer tied to your actual results." },
+    ],
+    benefits: ["Download a secure, HIPAA-compliant report in plain English", "Walk into appointments with the follow-up questions already prepared", "Available any time — no waiting on a callback"],
+    faq: [
+      { q: "Is this a substitute for medical advice?", a: "No — Report Guide is not a substitute for your doctor. It provides educational insight only, to help you understand your medical reports with more confidence." },
+      { q: "What report types are supported?", a: "Blood panels, urinalysis, imaging summaries, pathology notes, and most standard lab PDFs." },
+      { q: "Is my health data private?", a: "Yes — Report Guide is HIPAA compliant, and your reports are encrypted and never used to train models." },
+      { q: "Do I need an account to use it?", a: "No — you can upload and process a report with or without creating an account." },
+    ],
+  },
+  {
     slug: "resume-ai",
     name: "Resume AI",
-    tagline: "Land interviews faster with AI-crafted resumes.",
+    tagline: "AI-crafted resumes that get past the filters and the recruiter.",
     description:
-      "Generate polished, role-specific resumes and cover letters that pass ATS filters and impress hiring managers.",
-    status: "Available",
+      "Turn a messy work history into a polished, role-specific resume and cover letter — rewritten to match the exact language of the job you want, and built to clear ATS filters cleanly.",
+    status: "Coming Soon",
     icon: FileText,
     features: [
-      { title: "ATS-optimized templates", description: "Modern layouts that parse cleanly through any applicant tracking system." },
-      { title: "Role tailoring", description: "Rewrite bullets to match the exact language of a job description in seconds." },
-      { title: "Instant cover letters", description: "Generate matched cover letters with a consistent tone and story." },
+      { title: "ATS-safe formatting", description: "Clean, parseable layouts that survive every major applicant tracking system — no hidden formatting traps." },
+      { title: "Role-matched rewrites", description: "Bullets rewritten to mirror the language and priorities of the specific job description you're targeting." },
+      { title: "Cover letters in seconds", description: "Generate a matching cover letter with a consistent voice and a real narrative, not a template." },
     ],
-    benefits: ["Save 5+ hours per application", "Higher interview call-back rate", "Consistent personal branding"],
+    benefits: ["Cut hours off every application", "Higher callback rates from tailored language", "One consistent, professional brand across every document"],
     faq: [
-      { q: "Does it work for technical roles?", a: "Yes — Resume AI supports engineering, product, design, and data roles with domain-specific phrasing." },
+      { q: "Will it work for technical roles?", a: "Yes — Resume AI is built to support engineering, product, design, and data roles with domain-specific phrasing." },
       { q: "Can I export as PDF?", a: "Yes, export as PDF or DOCX with a single click." },
     ],
   },
   {
     slug: "interview-ai",
     name: "Interview AI",
-    tagline: "Practice interviews with a coach that never sleeps.",
+    tagline: "Practice with a coach that gives you the feedback recruiters won't.",
     description:
-      "Realistic mock interviews with instant feedback on your answers, tone, and structure — for any role and any level.",
-    status: "Beta",
+      "Realistic, role-specific mock interviews with structured, actionable feedback on your answers, delivery, and pacing — so the real interview feels like your fifth one, not your first.",
+    status: "Coming Soon",
     icon: Mic,
     features: [
-      { title: "Adaptive question banks", description: "Behavioral, technical, and case questions calibrated to your target role." },
-      { title: "Live feedback", description: "Actionable coaching on clarity, structure, and STAR-style delivery." },
-      { title: "Voice mode", description: "Speak your answers aloud and get scored on pacing and filler words." },
+      { title: "Role-calibrated questions", description: "Behavioral, technical, and case questions tuned to your target role and seniority level." },
+      { title: "Structured feedback", description: "Specific coaching on clarity, structure, and STAR-style delivery — not just a score." },
+      { title: "Voice practice mode", description: "Answer out loud and get feedback on pacing, filler words, and confidence." },
     ],
-    benefits: ["Reduce interview anxiety", "Sharpen storytelling", "Track improvement over sessions"],
+    benefits: ["Walk in having already answered the hard questions", "Sharper, more structured storytelling", "Visible improvement tracked across sessions"],
     faq: [
-      { q: "Which roles are supported?", a: "Software, product, design, sales, marketing, and finance — with new tracks added monthly." },
-      { q: "Is my voice data stored?", a: "Audio is processed in-session and deleted after your review." },
+      { q: "Which roles will be supported?", a: "Software, product, design, sales, marketing, and finance at launch, with more tracks added over time." },
+      { q: "Will my voice data be stored?", a: "Audio will be processed in-session and deleted after your review." },
     ],
   },
   {
     slug: "ai-writer",
     name: "AI Writer",
-    tagline: "Write clearly. Ship faster.",
+    tagline: "A writing partner that keeps your voice, not replaces it.",
     description:
-      "A distraction-free writing companion for essays, documentation, marketing copy, and long-form thinking.",
-    status: "Available",
+      "A focused writing companion for essays, documentation, and long-form thinking — built to sharpen your ideas without flattening your voice into generic AI prose.",
+    status: "Coming Soon",
     icon: PenLine,
     features: [
-      { title: "Tone control", description: "Switch between concise, technical, warm, or persuasive with a single toggle." },
-      { title: "Outline mode", description: "Turn a rough idea into a structured draft you can polish quickly." },
-      { title: "Inline suggestions", description: "Non-intrusive rewrites that respect your voice." },
+      { title: "Tone control", description: "Dial between concise, technical, warm, or persuasive without losing your voice." },
+      { title: "Outline to draft", description: "Turn a rough idea into a structured first draft you can actually build on." },
+      { title: "Voice-preserving suggestions", description: "Inline rewrites that tighten your writing without making it sound like everyone else's." },
     ],
-    benefits: ["Write 3× faster", "Reduce editing loops", "Keep your voice consistent"],
+    benefits: ["Move from blank page to draft faster", "Fewer editing loops before something's ready", "Writing that still sounds like you"],
     faq: [
-      { q: "Can teams share styles?", a: "Yes, define shared voice guides at the workspace level." },
-      { q: "Does it detect AI content?", a: "AI Writer focuses on helping humans write better, not on evasion of detectors." },
-    ],
-  },
-  {
-    slug: "pdf-chat",
-    name: "PDF Chat",
-    tagline: "Talk to any document.",
-    description:
-      "Upload PDFs, contracts, research papers, or manuals and get precise answers with citations to the exact page.",
-    status: "Available",
-    icon: MessageSquare,
-    features: [
-      { title: "Cited answers", description: "Every response links back to the exact passage in the source." },
-      { title: "Multi-document sessions", description: "Compare and synthesize across dozens of files at once." },
-      { title: "Private by default", description: "Your documents are never used to train models." },
-    ],
-    benefits: ["Skim less, decide faster", "Handle long contracts confidently", "Onboard from thick manuals in minutes"],
-    faq: [
-      { q: "What file types are supported?", a: "PDF, DOCX, TXT, and Markdown — with more formats on the way." },
-      { q: "Is there a file size limit?", a: "Individual documents up to 200MB, with workspace-wide libraries far beyond that." },
+      { q: "Will teams be able to share styles?", a: "Yes — shared voice guides at the workspace level are planned for launch." },
+      { q: "Does it try to evade AI detectors?", a: "No — AI Writer is focused on helping humans write better, not on evading detection." },
     ],
   },
   {
     slug: "study-assistant",
     name: "Study Assistant",
-    tagline: "Your patient study partner.",
+    tagline: "Turns your notes into a study plan that actually works.",
     description:
-      "Generate flashcards, quizzes, and step-by-step explanations from your notes, textbooks, and lectures.",
+      "Feed it your notes, textbooks, or lecture slides and get spaced-repetition flashcards, concept maps, and explanations calibrated to exactly where you're stuck.",
     status: "Coming Soon",
     icon: GraduationCap,
     features: [
-      { title: "Smart flashcards", description: "Spaced-repetition decks built automatically from your materials." },
-      { title: "Concept maps", description: "Visualize how ideas connect across chapters and courses." },
-      { title: "Explain like I'm learning", description: "Adjustable depth from beginner to graduate level." },
+      { title: "Auto-generated flashcards", description: "Spaced-repetition decks built directly from your own material, not generic question banks." },
+      { title: "Concept maps", description: "See how ideas connect across chapters instead of memorizing them in isolation." },
+      { title: "Adjustable depth", description: "Explanations that scale from first-pass simple to graduate-level detail." },
     ],
-    benefits: ["Retain more, cram less", "Prep for exams with confidence", "Learn any subject at your pace"],
+    benefits: ["Retain more with less last-minute cramming", "Test yourself instead of just rereading notes", "Study any subject at a pace that fits you"],
     faq: [
-      { q: "When will it launch?", a: "Study Assistant is entering closed beta soon. Join the waitlist to get early access." },
+      { q: "When will it launch?", a: "Study Assistant is in active development. Join the waitlist to get early access." },
       { q: "Will it be free for students?", a: "There will be a generous free tier for individual learners." },
     ],
   },
   {
     slug: "vision-ai",
     name: "Vision AI",
-    tagline: "See more than pixels.",
+    tagline: "Real understanding of images, not just labels.",
     description:
-      "Analyze images, diagrams, and screenshots with a vision model tuned for real-world understanding.",
-    status: "Beta",
+      "A vision model tuned for real-world documents and scenes — turning receipts, forms, screenshots, and photos into structured, usable information.",
+    status: "Coming Soon",
     icon: Eye,
     features: [
-      { title: "Document extraction", description: "Turn receipts, forms, and IDs into structured data." },
-      { title: "Scene understanding", description: "Describe complex images with nuance and context." },
-      { title: "Developer API", description: "Drop Vision AI into your product with a few lines of code." },
+      { title: "Document extraction", description: "Pull structured data out of receipts, forms, and IDs without manual entry." },
+      { title: "Scene understanding", description: "Get nuanced, context-aware descriptions of complex images, not just object labels." },
+      { title: "Developer API", description: "Drop Vision AI into your own product with a straightforward REST API." },
     ],
-    benefits: ["Automate manual data entry", "Build accessible experiences", "Unlock insights from visual data"],
+    benefits: ["Cut manual data entry to near zero", "Build accessible experiences from visual content", "Unlock insights buried in images and screenshots"],
     faq: [
-      { q: "Is there an API?", a: "Yes — a REST API is available for beta developers." },
-      { q: "How accurate is it?", a: "Vision AI is competitive with leading multimodal models on standard benchmarks." },
+      { q: "Will there be an API?", a: "Yes — a REST API is planned for developers at launch." },
+      { q: "How accurate will it be?", a: "Vision AI is being built to compete with leading multimodal models on standard benchmarks." },
     ],
   },
 ];

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Twitter, Github, Linkedin } from "lucide-react";
-import { NewsletterForm } from "@/components/site/NewsletterForm";
 
 const cols = [
   {
@@ -16,15 +15,12 @@ const cols = [
     title: "Products",
     links: [
       { to: "/products", label: "All Products" },
-      { to: "/products/resume-ai", label: "Resume AI" },
-      { to: "/products/interview-ai", label: "Interview AI" },
-      { to: "/products/ai-writer", label: "AI Writer" },
+      { to: "/products/report-guide", label: "Report Guide" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { to: "/blog", label: "Blog" },
       { to: "/faq", label: "FAQ" },
       { to: "/contact", label: "Support" },
     ],
@@ -53,8 +49,6 @@ export function Footer() {
               An AI product company designing intelligent, human-centered tools for
               students, professionals, and teams.
             </p>
-
-            <NewsletterForm />
 
             <div className="mt-8 flex gap-3">
               {[Twitter, Github, Linkedin].map((Icon, i) => (
@@ -93,14 +87,14 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground">Terms</Link>
-            <span>Made with care in San Francisco.</span>
+            <span>Made with care in Silver Spring, MD.</span>
           </div>
         </div>
       </div>
 
       <div aria-hidden className="pointer-events-none select-none px-6">
-        <div className="mx-auto -mb-10 max-w-7xl text-[18vw] font-semibold leading-none tracking-[-0.05em] text-transparent" style={{ backgroundImage: "linear-gradient(180deg, rgba(139,92,246,0.18), rgba(59,130,246,0.02))", WebkitBackgroundClip: "text", backgroundClip: "text" }}>
-          Sunriva
+        <div className="mx-auto -mb-10 max-w-7xl text-center text-[12vw] font-semibold leading-none tracking-[-0.05em] text-transparent" style={{ backgroundImage: "linear-gradient(180deg, rgba(139,92,246,0.18), rgba(59,130,246,0.02))", WebkitBackgroundClip: "text", backgroundClip: "text" }}>
+          Sunriva AI
         </div>
       </div>
     </footer>

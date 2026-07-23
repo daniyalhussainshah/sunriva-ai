@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Search } from "lucide-react";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/Section";
 
@@ -36,6 +37,10 @@ const posts = [
 ];
 
 export default function BlogPage() {
+  // Blog page hidden site-wide (nav/footer links removed and route 404s).
+  // Content kept below, not deleted, so it can be re-enabled later.
+  notFound();
+
   return (
     <Section>
       <SectionHeading eyebrow="Blog" title="Notes from Sunriva" description="Essays, product updates, and engineering deep dives." />

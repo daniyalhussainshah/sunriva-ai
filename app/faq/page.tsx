@@ -20,13 +20,13 @@ const groups = [
     items: [
       { q: "What is Sunriva AI?", a: "Sunriva AI is a product company that builds AI-powered applications used by individuals and businesses worldwide." },
       { q: "Are you a consulting agency?", a: "No — we're a product company. We build and ship our own AI products." },
-      { q: "Where are you based?", a: "We're a remote-first team with a small hub in San Francisco." },
+      { q: "Where are you based?", a: "We're a remote-first team with a small hub in Silver Spring, MD." },
     ],
   },
   {
     title: "Products",
     items: [
-      { q: "Which products are available today?", a: "Resume AI, AI Writer, and PDF Chat are generally available. Interview AI and Vision AI are in beta. Study Assistant is coming soon." },
+      { q: "Which products are available today?", a: "Report Guide is live today at medicalreportguide.com. Resume AI, Interview AI, AI Writer, Study Assistant, and Vision AI are in active development." },
       { q: "Do your products integrate with each other?", a: "Yes — over time our products are designed to work together as a coherent suite." },
       { q: "Is there a free tier?", a: "Most products offer a generous free tier for individual use." },
     ],
@@ -43,7 +43,7 @@ const groups = [
     title: "Business",
     items: [
       { q: "Do you offer team plans?", a: "Yes — most products offer team and enterprise plans with shared workspaces." },
-      { q: "Do you have an API?", a: "Vision AI has a developer API in beta. More product APIs are on the roadmap." },
+      { q: "Do you have an API?", a: "Not yet — a developer API is on the roadmap as more products launch." },
       { q: "How do I contact sales?", a: "Email hello@sunriva.ai or use the contact form and we'll route you to the right person." },
     ],
   },

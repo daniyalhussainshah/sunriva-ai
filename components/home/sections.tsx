@@ -102,7 +102,7 @@ function HeroPreview() {
           </div>
           <div className="grid gap-6 p-6 md:grid-cols-[220px_1fr]">
             <aside className="hidden flex-col gap-1 md:flex">
-              {["Resume AI", "Interview AI", "AI Writer", "PDF Chat", "Vision AI", "Study Assistant"].map((n, i) => (
+              {["Resume AI", "Interview AI", "AI Writer", "Report Guide", "Vision AI", "Study Assistant"].map((n, i) => (
                 <div key={n} className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs ${i === 3 ? "bg-white/5 text-foreground" : "text-muted-foreground hover:bg-white/[0.03]"}`}>
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gradient-primary)" }} />
                   {n}
@@ -110,31 +110,31 @@ function HeroPreview() {
               ))}
             </aside>
             <div className="space-y-4">
+              <div className="flex justify-end">
+                <div className="max-w-md rounded-2xl rounded-tr-md px-4 py-3 text-sm text-white" style={{ background: "var(--gradient-primary)" }}>
+                  What is my blood sugar level?
+                </div>
+              </div>
               <div className="flex gap-3">
                 <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full" style={{ background: "var(--gradient-primary)" }}>
                   <Sparkles className="h-4 w-4 text-white" />
                 </div>
                 <div className="rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
-                  Summarize this 40-page vendor contract and flag anything unusual.
+                  Your fasting glucose is <span className="font-semibold text-foreground">90 mg/dL</span>. Here&apos;s what it means according to your report.
                 </div>
               </div>
               <div className="flex justify-end">
                 <div className="max-w-md rounded-2xl rounded-tr-md px-4 py-3 text-sm text-white" style={{ background: "var(--gradient-primary)" }}>
-                  Done. 3 clauses need attention — auto-renewal, liability cap, and data residency.
+                  How about my urinalysis?
                 </div>
               </div>
-              <div className="grid gap-2 rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs">
-                {[
-                  ["Auto-renewal", "Page 12", "Medium"],
-                  ["Liability cap", "Page 27", "High"],
-                  ["Data residency", "Page 38", "Medium"],
-                ].map(([k, p, s]) => (
-                  <div key={k} className="flex items-center justify-between">
-                    <span className="text-muted-foreground">{k}</span>
-                    <span>{p}</span>
-                    <span className={`rounded-full px-2 py-0.5 text-[10px] ${s === "High" ? "bg-pink-500/15 text-pink-300" : "bg-blue-500/15 text-blue-300"}`}>{s}</span>
-                  </div>
-                ))}
+              <div className="flex gap-3">
+                <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full" style={{ background: "var(--gradient-primary)" }}>
+                  <Sparkles className="h-4 w-4 text-white" />
+                </div>
+                <div className="rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
+                  Your urine pH is <span className="font-semibold text-foreground">6.23</span>. Here&apos;s what it means in plain language according to your report.
+                </div>
               </div>
             </div>
           </div>
@@ -183,9 +183,9 @@ export function CompanyIntro() {
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
-              { k: "Founded", v: "2024, San Francisco" },
+              { k: "Founded", v: "2024, Silver Spring, MD" },
               { k: "Team", v: "Designers, ML engineers, researchers" },
-              { k: "Products live", v: "4 shipped · 2 in beta" },
+              { k: "Products live", v: "1 shipped · 5 in development" },
               { k: "Backed by", v: "Independent operators" },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl border border-white/10 bg-card p-5">
@@ -260,16 +260,21 @@ export function FeaturedProducts() {
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {products.map((p) => {
           const Icon = p.icon;
-          return (
-            <Link
-              key={p.slug}
-              href={`/products/${p.slug}`}
-              className="card-hover group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card p-7"
-            >
+          const available = p.status !== "Coming Soon";
+
+          const card = (
+            <>
               <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-40" style={{ background: "var(--gradient-primary)" }} />
               <div className="relative flex items-center justify-between">
-                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.03]">
-                  <Icon className="h-5 w-5 text-primary" />
+                <div
+                  className="grid h-12 w-12 place-items-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+                  style={p.logoImage ? { background: "#fff" } : undefined}
+                >
+                  {p.logoImage ? (
+                    <img src={p.logoImage} alt={`${p.name} logo`} className="h-full w-full object-contain p-1.5" />
+                  ) : (
+                    <Icon className="h-5 w-5 text-primary" />
+                  )}
                 </div>
                 <span className={`rounded-full border px-2.5 py-1 text-[10px] uppercase tracking-wider ${
                   p.status === "Available"
@@ -284,9 +289,35 @@ export function FeaturedProducts() {
               <h3 className="relative mt-8 text-xl font-semibold">{p.name}</h3>
               <p className="relative mt-1 text-sm text-primary/80">{p.tagline}</p>
               <p className="relative mt-3 flex-1 text-sm text-muted-foreground">{p.description}</p>
-              <div className="relative mt-6 inline-flex items-center gap-1 text-sm text-primary">
-                Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {available ? (
+                <div className="relative mt-6 inline-flex items-center gap-1 text-sm text-primary">
+                  Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              ) : (
+                <div className="relative mt-6 text-sm text-muted-foreground">Not available yet</div>
+              )}
+            </>
+          );
+
+          if (!available) {
+            return (
+              <div
+                key={p.slug}
+                aria-disabled="true"
+                className="relative flex cursor-not-allowed flex-col overflow-hidden rounded-3xl border border-white/10 bg-card p-7 opacity-60"
+              >
+                {card}
               </div>
+            );
+          }
+
+          return (
+            <Link
+              key={p.slug}
+              href={`/products/${p.slug}`}
+              className="card-hover group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card p-7"
+            >
+              {card}
             </Link>
           );
         })}
@@ -427,12 +458,30 @@ export function Vision() {
   );
 }
 
+/* ---------------- Our Promise ---------------- */
+export function OurPromise() {
+  return (
+    <Section>
+      <div className="mx-auto max-w-3xl text-center">
+        <Eyebrow>Our Promise</Eyebrow>
+        <h2 className="mt-6 text-3xl font-semibold tracking-tight md:text-4xl">
+          Plain language over jargon. Your data stays yours. A real team behind every product.
+        </h2>
+        <p className="mt-6 text-muted-foreground">
+          That&apos;s the standard for everything we build — starting with Report Guide, and every
+          Sunriva product after it.
+        </p>
+      </div>
+    </Section>
+  );
+}
+
 /* ---------------- Roadmap ---------------- */
 const roadmap = [
   { q: "Q1 2026", title: "Vision AI — public beta", body: "Multimodal understanding, document extraction, and a developer API for image workflows.", tag: "In progress" },
   { q: "Q2 2026", title: "Study Assistant", body: "Spaced-repetition flashcards, concept maps, and adaptive quizzes from any source material.", tag: "Beta soon" },
   { q: "Q3 2026", title: "Sunriva Workspaces", body: "Shared spaces so teams can use every Sunriva product with the same voice, style, and data.", tag: "Planned" },
-  { q: "Q4 2026", title: "Voice mode across products", body: "Real-time voice UX for Interview AI, PDF Chat, and Study Assistant — hands-free wherever you are.", tag: "Planned" },
+  { q: "Q4 2026", title: "Voice mode across products", body: "Real-time voice UX for Interview AI, Report Guide, and Study Assistant — hands-free wherever you are.", tag: "Planned" },
   { q: "2027", title: "On-device Sunriva", body: "A private, on-device layer so your most sensitive work never leaves your machine.", tag: "Research" },
 ];
 

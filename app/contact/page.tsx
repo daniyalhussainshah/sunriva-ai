@@ -41,7 +41,7 @@ export default function ContactPage() {
             {[
               { icon: Mail, label: "Email", value: "hello@sunriva.ai" },
               { icon: Phone, label: "Phone", value: "+1 (415) 555-0142" },
-              { icon: MapPin, label: "Office", value: "500 Market Street, San Francisco, CA" },
+              { icon: MapPin, label: "Office", value: "10770 Columbia Pike, Suite 300, Silver Spring, MD 20901" },
               { icon: MessageCircle, label: "Support", value: "support@sunriva.ai" },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6">

@@ -6,7 +6,7 @@ import { getProduct, products } from "@/lib/products";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/Section";
 
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+  return products.filter((p) => p.status !== "Coming Soon").map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -16,7 +16,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product) {
+  if (!product || product.status === "Coming Soon") {
     return { title: "Product not found — Sunriva AI", robots: { index: false } };
   }
   return {
@@ -40,18 +40,25 @@ export default async function ProductDetail({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product) notFound();
+  if (!product || product.status === "Coming Soon") notFound();
 
   const Icon = product.icon;
-  const others = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+  const others = products.filter((p) => p.slug !== product.slug && p.status !== "Coming Soon").slice(0, 3);
 
   return (
     <>
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-20 text-center md:pt-28">
-          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-elegant)" }}>
-            <Icon className="h-7 w-7 text-white" />
+          <div
+            className="mx-auto grid h-16 w-16 place-items-center overflow-hidden rounded-2xl"
+            style={{ background: product.logoImage ? "#fff" : "var(--gradient-primary)", boxShadow: "var(--shadow-elegant)" }}
+          >
+            {product.logoImage ? (
+              <img src={product.logoImage} alt={`${product.name} logo`} className="h-full w-full object-contain p-2" />
+            ) : (
+              <Icon className="h-7 w-7 text-white" />
+            )}
           </div>
           <div className="mt-6 flex justify-center">
             <Eyebrow>{product.status}</Eyebrow>
@@ -60,9 +67,25 @@ export default async function ProductDetail({
           <p className="mt-4 text-lg text-muted-foreground md:text-xl">{product.tagline}</p>
           <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">{product.description}</p>
           <div className="mt-8 flex justify-center gap-3">
-            <button className="rounded-full px-5 py-3 text-sm font-medium text-white" style={{ background: "var(--gradient-primary)" }}>
-              Get early access
-            </button>
+            {product.externalUrl ? (
+              <a
+                href={product.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full px-5 py-3 text-sm font-medium text-white"
+                style={{ background: "var(--gradient-primary)" }}
+              >
+                Visit {product.name}
+              </a>
+            ) : (
+              <Link
+                href="/contact"
+                className="rounded-full px-5 py-3 text-sm font-medium text-white"
+                style={{ background: "var(--gradient-primary)" }}
+              >
+                Join the waitlist
+              </Link>
+            )}
             <Link href="/contact" className="rounded-full border border-border bg-white/[0.03] px-5 py-3 text-sm">
               Contact sales
             </Link>
@@ -97,10 +120,20 @@ export default async function ProductDetail({
               ))}
             </ul>
           </div>
-          <div className="glass aspect-video rounded-2xl border border-border p-6">
-            <div className="h-full w-full rounded-xl border border-border" style={{ background: "var(--gradient-hero), var(--gradient-primary)", opacity: 0.9 }} />
-            <p className="mt-4 text-center text-xs text-muted-foreground">Product screenshot</p>
-          </div>
+          {product.screenshotImage ? (
+            <div className="glass overflow-hidden rounded-2xl border border-border p-2">
+              <img
+                src={product.screenshotImage}
+                alt={`${product.name} product screenshot`}
+                className="w-full rounded-xl border border-border"
+              />
+            </div>
+          ) : (
+            <div className="glass aspect-video rounded-2xl border border-border p-6">
+              <div className="h-full w-full rounded-xl border border-border" style={{ background: "var(--gradient-hero), var(--gradient-primary)", opacity: 0.9 }} />
+              <p className="mt-4 text-center text-xs text-muted-foreground">Product screenshot</p>
+            </div>
+          )}
         </div>
       </Section>
 
@@ -124,11 +157,31 @@ export default async function ProductDetail({
           <div className="pointer-events-none absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
           <div className="relative">
             <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">Ready to try {product.name}?</h2>
-            <p className="mt-4 text-muted-foreground">Join thousands exploring the next generation of practical AI.</p>
+            <p className="mt-4 text-muted-foreground">
+              {product.externalUrl
+                ? "Head over to the live product and get started in minutes."
+                : "Join the waitlist and we'll let you know the moment it's ready."}
+            </p>
             <div className="mt-8 flex justify-center gap-3">
-              <button className="rounded-full px-5 py-3 text-sm font-medium text-white" style={{ background: "var(--gradient-primary)" }}>
-                Get started
-              </button>
+              {product.externalUrl ? (
+                <a
+                  href={product.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full px-5 py-3 text-sm font-medium text-white"
+                  style={{ background: "var(--gradient-primary)" }}
+                >
+                  Visit {product.name}
+                </a>
+              ) : (
+                <Link
+                  href="/contact"
+                  className="rounded-full px-5 py-3 text-sm font-medium text-white"
+                  style={{ background: "var(--gradient-primary)" }}
+                >
+                  Join the waitlist
+                </Link>
+              )}
               <Link href="/products" className="rounded-full border border-border px-5 py-3 text-sm">
                 Explore more
               </Link>
@@ -137,27 +190,29 @@ export default async function ProductDetail({
         </div>
       </Section>
 
-      <Section>
-        <SectionHeading eyebrow="More" title="Other Sunriva products" />
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {others.map((p) => {
-            const OIcon = p.icon;
-            return (
-              <Link
-                key={p.slug}
-                href={`/products/${p.slug}`}
-                className="card-hover flex flex-col rounded-2xl border border-border bg-card p-6"
-              >
-                <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-white/[0.03]">
-                  <OIcon className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="mt-6 text-base font-semibold">{p.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
-              </Link>
-            );
-          })}
-        </div>
-      </Section>
+      {others.length > 0 && (
+        <Section>
+          <SectionHeading eyebrow="More" title="Other Sunriva products" />
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {others.map((p) => {
+              const OIcon = p.icon;
+              return (
+                <Link
+                  key={p.slug}
+                  href={`/products/${p.slug}`}
+                  className="card-hover flex flex-col rounded-2xl border border-border bg-card p-6"
+                >
+                  <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-white/[0.03]">
+                    <OIcon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="mt-6 text-base font-semibold">{p.name}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
+                </Link>
+              );
+            })}
+          </div>
+        </Section>
+      )}
     </>
   );
 }

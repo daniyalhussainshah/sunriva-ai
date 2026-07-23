@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { PhoneField } from "./PhoneField";
+
 function Field({ label, type = "text", full = false }: { label: string; type?: string; full?: boolean }) {
   return (
     <div className={full ? "md:col-span-2" : ""}>
@@ -13,13 +16,15 @@ function Field({ label, type = "text", full = false }: { label: string; type?: s
 }
 
 export function ContactForm() {
+  const [phone, setPhone] = useState("");
+
   return (
     <form onSubmit={(e) => e.preventDefault()} className="rounded-3xl border border-border bg-card p-8">
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="First name" />
         <Field label="Last name" />
         <Field label="Email" type="email" full />
-        <Field label="Company" full />
+        <PhoneField value={phone} onChange={setPhone} />
       </div>
       <div className="mt-4">
         <label className="text-xs font-medium text-muted-foreground">Message</label>

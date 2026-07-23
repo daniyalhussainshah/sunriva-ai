@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import {
   Hero,
-  TrustStrip,
+  // TrustStrip, // "Trusted by curious teams at" section hidden — see components/home/sections.tsx
   CompanyIntro,
   FeaturedProducts,
   WhySunriva,
   HowWeBuild,
   Technologies,
   Vision,
-  Roadmap,
+  OurPromise,
+  // Roadmap, // roadmap section hidden — see components/home/sections.tsx
   Testimonial,
-  LatestArticles,
+  // LatestArticles, // blog section hidden — see components/home/sections.tsx
   FAQPreview,
 } from "@/components/home/sections";
 import { ContactCTA } from "@/components/home/contact-cta";
@@ -38,16 +39,17 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustStrip />
+      {/* <TrustStrip /> — hidden for now, not deleted */}
       <CompanyIntro />
       <FeaturedProducts />
       <WhySunriva />
       <HowWeBuild />
       <Technologies />
       <Vision />
-      <Roadmap />
+      <OurPromise />
+      {/* <Roadmap /> — hidden for now, not deleted */}
       <Testimonial />
-      <LatestArticles />
+      {/* <LatestArticles /> — blog section hidden, not deleted */}
       <FAQPreview />
       <ContactCTA />
     </>

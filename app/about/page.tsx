@@ -24,10 +24,9 @@ const values = [
 
 const timeline = [
   { year: "2024", event: "Sunriva AI founded with a small team of designers and researchers." },
-  { year: "2025", event: "First product — Resume AI — launches to strong reception." },
-  { year: "2025", event: "PDF Chat and AI Writer join the product family." },
-  { year: "2026", event: "Vision AI enters beta; Interview AI expands into voice mode." },
-  { year: "Beyond", event: "Ten thoughtful AI products designed to work together." },
+  { year: "2025", event: "Report Guide — our first product — launches at medicalreportguide.com." },
+  { year: "2026", event: "Resume AI, Interview AI, AI Writer, Study Assistant, and Vision AI enter development." },
+  { year: "Beyond", event: "A growing suite of focused AI products designed to work together." },
 ];
 
 export default function AboutPage() {
@@ -83,6 +82,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      {/* Timeline section hidden — not deleted, see `timeline` array above.
       <Section>
         <SectionHeading eyebrow="Timeline" title="How we got here" />
         <div className="mt-12 space-y-4">
@@ -94,6 +94,7 @@ export default function AboutPage() {
           ))}
         </div>
       </Section>
+      */}
     </>
   );
 }
