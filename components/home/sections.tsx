@@ -17,7 +17,7 @@ import {
   Code2,
   RefreshCcw,
   Star,
-  Play,
+  // Play, // only used by the hidden "Watch our story" button below
   MessageSquareQuote,
 } from "lucide-react";
 import { products } from "@/lib/products";
@@ -49,8 +49,7 @@ export function Hero() {
             for the way you <span className="text-gradient">actually work</span>.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Sunriva AI is a product company designing intelligent tools for students, professionals,
-            creators, and teams. No jargon. No hype. Just AI that quietly makes your day better.
+            Intelligent tools for everyone.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -62,12 +61,12 @@ export function Hero() {
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link
+            {/* <Link
               href="/mission"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-white/[0.07]"
             >
               <Play className="h-3.5 w-3.5" /> Watch our story
-            </Link>
+            </Link> — hidden for now, not deleted */}
           </div>
 
           <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-muted-foreground">
