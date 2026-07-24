@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/Section";
-import { ArrowRight, Coffee, Globe, Heart, Rocket } from "lucide-react";
+import { Coffee, Globe, Heart, Rocket } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Careers — Sunriva AI",
@@ -29,6 +29,7 @@ const roles = [
   { title: "Product Manager, Vision AI", team: "Product", location: "Remote (Global)", type: "Full-time" },
   { title: "Developer Advocate", team: "Growth", location: "Remote (US)", type: "Full-time" },
   { title: "Design Engineer", team: "Design", location: "Remote (Global)", type: "Contract" },
+  { title: "Social Media Marketing", team: "Growth", location: "Remote (Global)", type: "Full-time" },
 ];
 
 export default function CareersPage() {
@@ -85,9 +86,22 @@ export default function CareersPage() {
                   <span>· {r.type}</span>
                 </div>
               </div>
-              <button className="inline-flex shrink-0 items-center gap-1 rounded-full border border-border px-4 py-2 text-sm hover:border-primary/40">
-                Apply <ArrowRight className="h-4 w-4" />
-              </button>
+              <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                <button
+                  disabled
+                  aria-disabled="true"
+                  className="cursor-not-allowed rounded-full border border-border px-4 py-2 text-sm text-muted-foreground opacity-50"
+                >
+                  Not Hiring
+                </button>
+                <button
+                  disabled
+                  aria-disabled="true"
+                  className="cursor-not-allowed rounded-full border border-border px-4 py-2 text-sm text-muted-foreground opacity-50"
+                >
+                  Job Requirements
+                </button>
+              </div>
             </div>
           ))}
         </div>
