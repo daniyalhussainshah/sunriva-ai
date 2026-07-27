@@ -7,6 +7,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 
 const links = [
   { to: "/products", label: "Products" },
+  { to: "/services", label: "Services" },
   { to: "/about", label: "About" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
@@ -49,11 +50,11 @@ export function Navbar() {
 
           <div className="hidden md:block">
             <Link
-              href="/products"
+              href="/services"
               className="group inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white shadow-lg transition-transform hover:scale-[1.03]"
               style={{ background: "var(--gradient-primary)" }}
             >
-              Explore Products
+              Explore Services
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -82,12 +83,12 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="/products"
+              href="/services"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-white"
               style={{ background: "var(--gradient-primary)" }}
             >
-              Explore Products
+              Explore Services
             </Link>
           </div>
         </div>

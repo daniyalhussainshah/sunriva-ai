@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/Section";
 import { Coffee, Globe, Heart, Rocket } from "lucide-react";
 
@@ -23,13 +24,11 @@ const benefits = [
 ];
 
 const roles = [
-  { title: "Senior Product Designer", team: "Design", location: "Remote (Global)", type: "Full-time" },
-  { title: "Applied AI Engineer", team: "Engineering", location: "Remote (US / EU)", type: "Full-time" },
-  { title: "Full-Stack Engineer", team: "Engineering", location: "Remote (Global)", type: "Full-time" },
-  { title: "Product Manager, Vision AI", team: "Product", location: "Remote (Global)", type: "Full-time" },
-  { title: "Developer Advocate", team: "Growth", location: "Remote (US)", type: "Full-time" },
-  { title: "Design Engineer", team: "Design", location: "Remote (Global)", type: "Contract" },
-  { title: "Social Media Marketing", team: "Growth", location: "Remote (Global)", type: "Full-time" },
+  { title: "AI Engineer", team: "Engineering", location: "Maryland, US", type: "Full-time" },
+  { title: "Full-Stack Engineer", team: "Engineering", location: "Maryland, US", type: "Full-time" },
+  { title: "DevOps Engineer", team: "Engineering", location: "Maryland, US", type: "Full-time" },
+  { title: "Design Engineer", team: "Design", location: "Maryland, US", type: "Full-time" },
+  { title: "Social Media Marketing", team: "Growth", location: "Maryland, US", type: "Full-time" },
 ];
 
 export default function CareersPage() {
@@ -94,13 +93,6 @@ export default function CareersPage() {
                 >
                   Not Hiring
                 </button>
-                <button
-                  disabled
-                  aria-disabled="true"
-                  className="cursor-not-allowed rounded-full border border-border px-4 py-2 text-sm text-muted-foreground opacity-50"
-                >
-                  Job Requirements
-                </button>
               </div>
             </div>
           ))}
@@ -109,9 +101,13 @@ export default function CareersPage() {
         <div className="mt-16 rounded-3xl border border-border bg-card p-10 text-center">
           <h3 className="text-2xl font-semibold">Don't see your role?</h3>
           <p className="mt-3 text-muted-foreground">We're always excited to meet exceptional people. Send us a note.</p>
-          <button className="mt-6 rounded-full px-5 py-3 text-sm font-medium text-white" style={{ background: "var(--gradient-primary)" }}>
+          <Link
+            href="/contact"
+            className="mt-6 inline-block rounded-full px-5 py-3 text-sm font-medium text-white"
+            style={{ background: "var(--gradient-primary)" }}
+          >
             Introduce yourself
-          </button>
+          </Link>
         </div>
       </Section>
     </>

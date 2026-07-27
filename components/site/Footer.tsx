@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Twitter, Github, Linkedin } from "lucide-react";
+// import { Twitter, Github, Linkedin } from "lucide-react"; // re-enable once social pages exist
 
 const cols = [
   {
     title: "Company",
     links: [
       { to: "/about", label: "About" },
-      { to: "/mission", label: "Mission" },
+      { to: "/services", label: "Services" },
       { to: "/careers", label: "Careers" },
       { to: "/contact", label: "Contact" },
     ],
@@ -50,6 +50,7 @@ export function Footer() {
               students, professionals, and teams.
             </p>
 
+            {/* Social icons — hidden until real social pages exist, not deleted
             <div className="mt-8 flex gap-3">
               {[Twitter, Github, Linkedin].map((Icon, i) => (
                 <a
@@ -62,6 +63,7 @@ export function Footer() {
                 </a>
               ))}
             </div>
+            */}
           </div>
 
           <div className="grid gap-10 md:col-span-8 md:grid-cols-4">

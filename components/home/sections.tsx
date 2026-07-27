@@ -54,11 +54,11 @@ export function Hero() {
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
-              href="/products"
+              href="/services"
               className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium text-white transition-transform hover:scale-[1.03]"
               style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-elegant)" }}
             >
-              Explore Products
+              Explore Services
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             {/* <Link
@@ -101,8 +101,8 @@ function HeroPreview() {
           </div>
           <div className="grid gap-6 p-6 md:grid-cols-[220px_1fr]">
             <aside className="hidden flex-col gap-1 md:flex">
-              {["Resume AI", "Interview AI", "AI Writer", "Report Guide", "Vision AI", "Study Assistant"].map((n, i) => (
-                <div key={n} className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs ${i === 3 ? "bg-white/5 text-foreground" : "text-muted-foreground hover:bg-white/[0.03]"}`}>
+              {["Report Guide"].map((n) => (
+                <div key={n} className="flex items-center gap-2 rounded-lg bg-white/5 px-3 py-2 text-xs text-foreground">
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gradient-primary)" }} />
                   {n}
                 </div>
@@ -184,7 +184,7 @@ export function CompanyIntro() {
             {[
               { k: "Founded", v: "2024, Silver Spring, MD" },
               { k: "Team", v: "Designers, ML engineers, researchers" },
-              { k: "Products live", v: "1 shipped · 5 in development" },
+              { k: "Products live", v: "1 live" },
               { k: "Backed by", v: "Independent operators" },
             ].map((x) => (
               <div key={x.k} className="rounded-2xl border border-white/10 bg-card p-5">
@@ -257,7 +257,7 @@ export function FeaturedProducts() {
         </Link>
       </div>
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => {
+        {products.filter((p) => p.slug === "report-guide").map((p) => {
           const Icon = p.icon;
           const available = p.status !== "Coming Soon";
 

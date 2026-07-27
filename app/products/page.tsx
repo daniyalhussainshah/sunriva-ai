@@ -26,7 +26,7 @@ export default function ProductsPage() {
         description="A focused lineup of AI products crafted for individuals and teams who care about quality."
       />
       <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => {
+        {products.filter((p) => p.slug === "report-guide").map((p) => {
           const Icon = p.icon;
           const available = p.status !== "Coming Soon";
 
