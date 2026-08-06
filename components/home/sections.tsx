@@ -49,7 +49,10 @@ export function Hero() {
             for the way you <span className="text-gradient">actually work</span>.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Intelligent tools for everyone.
+            Transforming Businesses Through Intelligent AI Solutions
+          </p>
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground">
+            Serving businesses to adopt AI with confidence through intelligent automation, custom AI applications and machine learning.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -75,67 +78,6 @@ export function Hero() {
                 <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> {t}
               </div>
             ))}
-          </div>
-        </div>
-
-        <HeroPreview />
-      </div>
-    </div>
-  );
-}
-
-function HeroPreview() {
-  return (
-    <div className="relative mx-auto mt-20 max-w-5xl animate-rise">
-      <div className="absolute -inset-4 rounded-[2rem]" style={{ background: "var(--gradient-primary)", filter: "blur(60px)", opacity: 0.35 }} />
-      <div className="glass relative overflow-hidden rounded-[1.75rem] p-2 shadow-2xl">
-        <div className="rounded-[1.4rem] border border-white/10 bg-[#080B1A]">
-          <div className="flex items-center justify-between border-b border-white/5 px-5 py-3">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-            </div>
-            <span className="text-xs text-muted-foreground">sunriva.ai · assistant</span>
-            <span className="text-xs text-muted-foreground">v2.6</span>
-          </div>
-          <div className="grid gap-6 p-6 md:grid-cols-[220px_1fr]">
-            <aside className="hidden flex-col gap-1 md:flex">
-              {["Report Guide"].map((n) => (
-                <div key={n} className="flex items-center gap-2 rounded-lg bg-white/5 px-3 py-2 text-xs text-foreground">
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gradient-primary)" }} />
-                  {n}
-                </div>
-              ))}
-            </aside>
-            <div className="space-y-4">
-              <div className="flex justify-end">
-                <div className="max-w-md rounded-2xl rounded-tr-md px-4 py-3 text-sm text-white" style={{ background: "var(--gradient-primary)" }}>
-                  What is my blood sugar level?
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full" style={{ background: "var(--gradient-primary)" }}>
-                  <Sparkles className="h-4 w-4 text-white" />
-                </div>
-                <div className="rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
-                  Your fasting glucose is <span className="font-semibold text-foreground">90 mg/dL</span>. Here&apos;s what it means according to your report.
-                </div>
-              </div>
-              <div className="flex justify-end">
-                <div className="max-w-md rounded-2xl rounded-tr-md px-4 py-3 text-sm text-white" style={{ background: "var(--gradient-primary)" }}>
-                  How about my urinalysis?
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full" style={{ background: "var(--gradient-primary)" }}>
-                  <Sparkles className="h-4 w-4 text-white" />
-                </div>
-                <div className="rounded-2xl rounded-tl-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
-                  Your urine pH is <span className="font-semibold text-foreground">6.23</span>. Here&apos;s what it means in plain language according to your report.
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -183,7 +125,7 @@ export function CompanyIntro() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
               { k: "Founded", v: "2024, Silver Spring, MD" },
-              { k: "Team", v: "Designers, ML engineers, researchers" },
+              { k: "Team", v: "Designers, ML engineers, AI Researchers" },
               { k: "Products live", v: "1 live" },
               { k: "Backed by", v: "Independent operators" },
             ].map((x) => (
@@ -321,6 +263,19 @@ export function FeaturedProducts() {
           );
         })}
       </div>
+    </Section>
+  );
+}
+
+/* ---------------- Purpose-Built AI Solutions ---------------- */
+export function PurposeBuiltSolutions() {
+  return (
+    <Section>
+      <SectionHeading
+        center
+        title="Purpose-Built AI Solutions"
+        description="Each product is designed to solve a specific problem with clarity and intelligence. Our approach develops an ecosystem that helps people and businesses work smarter."
+      />
     </Section>
   );
 }

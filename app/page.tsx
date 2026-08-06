@@ -4,6 +4,7 @@ import {
   // TrustStrip, // "Trusted by curious teams at" section hidden — see components/home/sections.tsx
   CompanyIntro,
   FeaturedProducts,
+  PurposeBuiltSolutions,
   WhySunriva,
   HowWeBuild,
   Technologies,
@@ -42,6 +43,7 @@ export default function Home() {
       {/* <TrustStrip /> — hidden for now, not deleted */}
       <CompanyIntro />
       <FeaturedProducts />
+      <PurposeBuiltSolutions />
       <WhySunriva />
       <HowWeBuild />
       <Technologies />
